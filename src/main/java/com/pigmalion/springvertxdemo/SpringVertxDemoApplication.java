@@ -1,5 +1,6 @@
 package com.pigmalion.springvertxdemo;
 
+import com.pigmalion.springvertxdemo.verticles.DBVerticle;
 import com.pigmalion.springvertxdemo.verticles.HttpServerVerticle;
 import io.vertx.core.Vertx;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class SpringVertxDemoApplication {
 	@Autowired
 	private HttpServerVerticle httpServerVerticle;
 
+	@Autowired
+	private DBVerticle dbVerticle;
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringVertxDemoApplication.class, args);
 	}
@@ -22,6 +26,7 @@ public class SpringVertxDemoApplication {
 	public void deployVerticles () {
 		Vertx vertx = Vertx.vertx();
 		vertx.deployVerticle(httpServerVerticle);
+		vertx.deployVerticle(dbVerticle);
 	}
 
 }
